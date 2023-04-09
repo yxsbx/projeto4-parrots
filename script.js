@@ -1,6 +1,5 @@
 const cards = [];
 
-/* Back of cards pictures */
 const gifs = [
     `<img data-test="face-up-image" src="img/bobrossparrot.gif">`,
     `<img data-test="face-up-image" src="img/explodyparrot.gif">`,
@@ -45,7 +44,7 @@ function startGame() {
     for (let i = 0; i < amountLetters; i++) {
         const box = document.querySelector('.box-cards');
         box.innerHTML += `
-        <div data-test="card" class="card" onclick="clickLetter(this)">
+        <div data-test="card" class="card" onclick="clickLetter(this)" id="${i}">
             <div class="front-face face">
                 <img data-test="face-down-image" src="img/back.png">
             </div>
@@ -63,8 +62,8 @@ function randomLetters() {
 startGame()
 
 function clickLetter(card) {
-
     const backFace = card.querySelector('.back-face');
+    card.removeAttribute('onclick');
 
     if (counter == 0) {
         time = setInterval(timeCounter, 1000);
@@ -76,13 +75,13 @@ function clickLetter(card) {
         if (selectedStatus === false) {
             chosenLetter = card;
             selectedStatus = true;
-            card.removeAtttribute("onclick")
         } else if (chosenLetter.innerHTML !== card.innerHTML) {
             selectedStatus = false;
+            card.setAttribute('onclick','clickLetter(this)');
+            chosenLetter.setAttribute('onclick','clickLetter(this)');
             setTimeout(spinLetter, 1000, chosenLetter);
             setTimeout(spinLetter, 1000, card);
             chosenLetter = null;
-            card.setAttribte("onclick",".back-face")
         } else {
             selectedStatus = false;
             equalLetter.push(card.classList[1]);
