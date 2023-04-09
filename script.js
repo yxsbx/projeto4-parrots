@@ -14,37 +14,37 @@ let counter = 0;
 
 let selectedStatus = false;
 
-let chosenLetter = null;
+let chosenCard = null;
 
-let equalLetter = [];
+let equalCard = [];
 
-let amountLetters = null;
+let amountCards = null;
 
 let amountPairs = null;
 
 function startGame() {
 
-    let amountLetters = parseInt(prompt(`🔹 Com quantas cartas deseja jogar?
+    let amountCardCards = parseInt(prompt(`🔹 Com quantas cartas deseja jogar?
     🔺 Obs: Digite um número par entre 4 e 14!`));
 
-    while ((amountLetters % 2 !== 0) || (amountLetters < 4) || (amountLetters > 14)) {
-        amountLetters = parseInt(prompt(`🔺 Atenção!!
+    while ((amountCards % 2 !== 0) || (amountCards < 4) || (amountCards > 14)) {
+        amountCards = parseInt(prompt(`🔺 Atenção!!
     ➡️ Digite um número par entre 4 e 14!`));
     };
 
-    gifs.sort(randomLetters);
+    gifs.sort(randomCards);
 
-    for (let i = 0; i < (amountLetters / 2); i++) {
+    for (let i = 0; i < (amountCards / 2); i++) {
         cards.push(gifs[i], gifs[i]);
     };
 
-    amountPairs = amountLetters / 2;
-    cards.sort(randomLetters);
+    amountPairs = amountCards / 2;
+    cards.sort(randomCards);
 
-    for (let i = 0; i < amountLetters; i++) {
+    for (let i = 0; i < amountCards; i++) {
         const box = document.querySelector('.box-cards');
         box.innerHTML += `
-        <div data-test="card" class="card" onclick="clickLetter(this)" id="${i}">
+        <div data-test="card" class="card" onclick="clickCard(this)" id="${i}">
             <div class="front-face face">
                 <img data-test="face-down-image" src="img/back.png">
             </div>
@@ -55,13 +55,13 @@ function startGame() {
     };
 };
 
-function randomLetters() {
+function randomCards() {
     return Math.random() - 0.5;
 };
 
 startGame()
 
-function clickLetter(card) {
+function clickCard(card) {
     const backFace = card.querySelector('.back-face');
     card.removeAttribute('onclick');
 
@@ -70,29 +70,29 @@ function clickLetter(card) {
     };
 
     if (backFace.classList.contains('.selected-back') === false) {
-        spinLetter(card);
+        spinCard(card);
         counter++;
         if (selectedStatus === false) {
-            chosenLetter = card;
+            chosenCard = card;
             selectedStatus = true;
-        } else if (chosenLetter.innerHTML !== card.innerHTML) {
+        } else if (chosenCard.innerHTML !== card.innerHTML) {
             selectedStatus = false;
-            card.setAttribute('onclick','clickLetter(this)');
-            chosenLetter.setAttribute('onclick','clickLetter(this)');
-            setTimeout(spinLetter, 1000, chosenLetter);
-            setTimeout(spinLetter, 1000, card);
-            chosenLetter = null;
+            card.setAttribute('onclick','clickCard(this)');
+            chosenCard.setAttribute('onclick','clickCard(this)');
+            setTimeout(spinCard, 1000, chosenCard);
+            setTimeout(spinCard, 1000, card);
+            chosenCard = null;
         } else {
             selectedStatus = false;
-            equalLetter.push(card.classList[1]);
-        } if (equalLetter.length === amountPairs) {
+            equalCard.push(card.classList[1]);
+        } if (equalCard.length === amountPairs) {
             clearTimeout(time);
             setTimeout(endGame, 1000);
         };
     };
 };
 
-function spinLetter(card) {
+function spinCard(card) {
     const frontFace = card.querySelector('.front-face');
     frontFace.classList.toggle('selected-front');
     const backFace = card.querySelector('.back-face');
