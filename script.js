@@ -24,12 +24,12 @@ let amountPairs = null;
 
 function startGame() {
 
-    let amountCards = parseInt(prompt(`🔹 Com quantas cartas deseja jogar?
-    🔺 Obs: Digite um número par entre 4 e 14!`));
+    let amountCards = parseInt(prompt(`Com quantas cartas deseja jogar?
+Obs: Digite um número par entre 4 e 14!`));
 
     while ((amountCards % 2 !== 0) || (amountCards < 4) || (amountCards > 14)) {
-        amountCards = parseInt(prompt(`🔺 Atenção!!
-    ➡️ Digite um número par entre 4 e 14!`));
+        amountCards = parseInt(prompt(`Atenção!!
+Digite um número par entre 4 e 14!`));
     };
 
     gifs.sort(randomCards);
@@ -108,19 +108,19 @@ function endGame() {
 
     const clock = document.querySelector('.clock');
 
-    alert(`🎉 Você ganhou em ${counter} jogadas! A duração do jogo foi de ${clock.innerHTML} segundos!`);
+    alert(`Você ganhou em ${counter} jogadas! A duração do jogo foi de ${clock.innerHTML} segundos!`);
 
     let restart = prompt('Você gostaria de reiniciar a partida? (sim ou não)');
 
     while (restart !== 'sim' && restart !== 'não') {
-        restart = prompt(`🔺 Atenção!!
-    ➡️ Digite [sim] ou [não]!`);
+        restart = prompt(`Atenção!!
+Digite [sim] ou [não]!`);
     };
     if (restart === 'sim') {
         location.reload(true);
     } else {
         alert(`Obrigada por jogar Parrot Card Game!
-    💚 Até Logo!`)
+Até Logo!`)
     };
 
 };
