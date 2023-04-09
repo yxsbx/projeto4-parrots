@@ -24,7 +24,7 @@ let amountPairs = null;
 
 function startGame() {
 
-    let amountCardCards = parseInt(prompt(`🔹 Com quantas cartas deseja jogar?
+    let amountCards = parseInt(prompt(`🔹 Com quantas cartas deseja jogar?
     🔺 Obs: Digite um número par entre 4 e 14!`));
 
     while ((amountCards % 2 !== 0) || (amountCards < 4) || (amountCards > 14)) {
