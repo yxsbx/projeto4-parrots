@@ -110,7 +110,7 @@ function endGame() {
 
     alert(`🎉 Você ganhou em ${counter} jogadas! A duração do jogo foi de ${clock.innerHTML} segundos!`);
 
-    let restart = prompt('Deseja reiniciar a partida? (sim/não)');
+    let restart = prompt('Você gostaria de reiniciar a partida? (sim ou não)');
 
     while (restart !== 'sim' && restart !== 'não') {
         restart = prompt(`🔺 Atenção!!
